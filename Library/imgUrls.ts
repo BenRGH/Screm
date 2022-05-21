@@ -16,3 +16,5 @@ export default [
     "https://imgur.com/WkjFqhU.jpg",
     "https://imgur.com/oo3HrUu.jpg",
 ];
+
+export const tomUrls = [""];

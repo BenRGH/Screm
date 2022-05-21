@@ -17,10 +17,20 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (message) => {
-    switch (message.content) {
+    switch (message.content.toLowerCase()) {
         case "screm":
             message.channel.send({
                 content: getRandomEmoticon(),
+                files: [
+                    new MessageAttachment(getRandomImageUrl(), "screm.png"),
+                ],
+            });
+            break;
+        case "tom":
+        case "tommy":
+        case "thomas":
+            message.channel.send({
+                content: "meow?",
                 files: [
                     new MessageAttachment(getRandomImageUrl(), "screm.png"),
                 ],
