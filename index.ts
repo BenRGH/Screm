@@ -5,6 +5,7 @@ import DiscordJs, {
 } from "discord.js";
 import dotenv from "dotenv";
 import { getRandomEmoticon, getRandomImageUrl } from "./utils";
+import { tomUrls } from "./Library/imgUrls";
 
 dotenv.config();
 
@@ -32,7 +33,10 @@ client.on("messageCreate", (message) => {
             message.channel.send({
                 content: "meow?",
                 files: [
-                    new MessageAttachment(getRandomImageUrl(), "screm.png"),
+                    new MessageAttachment(
+                        getRandomImageUrl(tomUrls),
+                        "tom.png"
+                    ),
                 ],
             });
             break;

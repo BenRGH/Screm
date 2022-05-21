@@ -7,8 +7,8 @@ export function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function getRandomImageUrl() {
-    return imgUrls[getRandomInt(0, imgUrls.length - 1)];
+export function getRandomImageUrl(images: string[] = imgUrls) {
+    return images[getRandomInt(0, images.length - 1)];
 }
 
 export function getRandomEmoticon() {
