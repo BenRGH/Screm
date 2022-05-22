@@ -4,4 +4,3 @@ node_modules
 *-lock.yaml
 *.env
 /.vs
-/package-lock.json
