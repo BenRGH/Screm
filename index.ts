@@ -27,25 +27,29 @@ client.on("ready", () => console.log("Oh I am ready!"));
 
 client.on("messageCreate", (messageEvent:Message) => {
     const message = messageEvent.content;
-    if (ContainsRule(message, screamRules)) {
-        messageEvent.channel.send({
-            content: getRandomEmoticon(),
-            files: [
-                new MessageAttachment(getRandomImageUrl(), "screm.png"),
-            ],
-        });
-    } else if (ContainsRule(message, tomRules)) {
-        messageEvent.channel.send({
-            content: "meow?",
-            files: [
-                new MessageAttachment(getRandomImageUrl(tomUrls), "tom.png"),
-            ],
-        });
-    } else if (ContainsRule(message, testRules)) {
-        messageEvent.reply({
-            content: "pong",
-            files: [],
-        });
+    switch (true) {
+        case ContainsRule(message, screamRules):
+            messageEvent.channel.send({
+                content: getRandomEmoticon(),
+                files: [
+                    new MessageAttachment(getRandomImageUrl(), "screm.png"),
+                ],
+            });
+            break;
+        case ContainsRule(message, tomRules):
+            messageEvent.channel.send({
+                content: "meow?",
+                files: [
+                    new MessageAttachment(getRandomImageUrl(tomUrls), "tom.png"),
+                ],
+            });
+            break;
+        case ContainsRule(message, testRules):
+            messageEvent.reply({
+                content: "pong",
+                files: [],
+            });
+            break;
     }
 });
 
