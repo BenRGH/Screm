@@ -5,7 +5,7 @@ import DiscordJs, {
 } from "discord.js";
 import dotenv from "dotenv";
 
-import { getRandomEmoticon, getRandomImageUrl } from "./utils";
+import { ContainsRule, getRandomEmoticon, getRandomImageUrl, IImageAttachment, messageBuilder } from "./utils";
 import { tomUrls } from "./Library/imgUrls";
 
 // Set up
@@ -20,21 +20,21 @@ const screamRules = ["scream", "screm", "scram"];
 const tomRules = ["tom", "tommy", "thomas"];
 const testRules = ["ping"];
 
-// Checking if string contains any string held within the rules array.
-const ContainsRule = (str: string, rules: string[]) => rules.some(rule => str.toLowerCase().includes(rule));
-
 client.on("ready", () => console.log("Oh I am ready!"));
 
 client.on("messageCreate", (messageEvent:Message) => {
     const message = messageEvent.content;
     switch (true) {
         case ContainsRule(message, screamRules):
-            messageEvent.channel.send({
-                content: getRandomEmoticon(),
-                files: [
-                    new MessageAttachment(getRandomImageUrl(), "screm.png"),
-                ],
-            });
+            messageEvent.channel.send(
+                messageBuilder(
+                    getRandomEmoticon(),
+                    {
+                        imageName: "screm.png",
+                        imageUrl: getRandomImageUrl(),
+                    } as IImageAttachment,
+                )
+            );
             break;
         case ContainsRule(message, tomRules):
             messageEvent.channel.send({
