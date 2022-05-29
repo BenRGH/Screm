@@ -1,6 +1,10 @@
 import { Message } from "discord.js";
 
-import { ContainsRule, messageBuilder, getGitCommit } from "../utils";
+import {
+    ContainsRule,
+    messageBuilder,
+    getGitCommit
+} from "../utils";
 import Action from "./action";
 
 class DebugAction extends Action {

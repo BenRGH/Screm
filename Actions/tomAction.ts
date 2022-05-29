@@ -1,7 +1,12 @@
 import { Message } from "discord.js";
 
 import { tomUrls } from "../Library/imgUrls";
-import { ContainsRule, getRandomImageUrl, IImageAttachment, messageBuilder } from "../utils";
+import {
+    ContainsRule,
+    getRandomImageUrl,
+    IImageAttachment,
+    messageBuilder
+} from "../utils";
 import Action from "./action";
 
 class TomAction extends Action {
