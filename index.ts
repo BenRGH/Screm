@@ -1,7 +1,6 @@
 import DiscordJs, {
     Intents,
     Message,
-    MessageAttachment
 } from "discord.js";
 import dotenv from "dotenv";
 
@@ -22,7 +21,7 @@ client.on("messageCreate", (messageEvent:Message) => {
 
     actions.forEach((action: Action) => {
         if (action.match(message)) {
-            action.execute(messageEvent, message);
+            action.execute(messageEvent);
         }
     });
 });

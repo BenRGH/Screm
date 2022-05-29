@@ -9,10 +9,7 @@ abstract class Action {
 
     abstract match(message: string): boolean;
 
-    abstract execute(
-        messageEvent: DiscordJs.Message<boolean>,
-        message?: string
-    ): void;
+    abstract execute(messageEvent: DiscordJs.Message<boolean>): void;
 }
 
 export default Action;

@@ -12,14 +12,15 @@ class DebugAction extends Action {
         return ContainsRule(message, this.rules);
     }
 
-    async execute(messageEvent: Message, message: string): Promise<void> {
-        if (ContainsRule(message, ["ping"])) {
+    async execute(messageEvent: Message): Promise<void> {
+        // TODO: bad, each action should be for one thing.
+        if (ContainsRule(messageEvent.content, ["ping"])) {
             messageEvent.reply(
                 messageBuilder(
                     "pong",
                 )
             );
-        } else if (ContainsRule(message, ["commit"])) {
+        } else if (ContainsRule(messageEvent.content, ["commit"])) {
             const commit = await getGitCommit();
             messageEvent.reply(
                 messageBuilder(JSON.stringify({
