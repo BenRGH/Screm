@@ -4,14 +4,15 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ts-node index.ts"
+        "start": "ts-node index.ts",
+        "pm2": "tsc --project tsconfig.json && pm2 start dist/index.js --name screm",
+        "pm2:kill": "pm2 stop screm"
     },
     "keywords": [],
     "author": "",
     "license": "MIT",
     "dependencies": {
         "discord.js": "^13.7.0",
-        "dotenv": "^16.0.1",
-        "git-last-commit": "^1.0.1"
+        "dotenv": "^16.0.1"
     }
 }
