@@ -1,5 +1,4 @@
 import { MessageAttachment } from "discord.js";
-import { Commit, getLastCommit } from "git-last-commit";
 
 import emoticons from "./Library/emoticons";
 import imgUrls from "./Library/imgUrls";
@@ -35,16 +34,4 @@ export function messageBuilder(content: string, imageAttachment?: IImageAttachme
             ]
             : [],
     };
-}
-
-export async function getGitCommit(): Promise<Commit> {
-    return new Promise((resolve, reject) => {
-        getLastCommit((err, commit) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(commit);
-            }
-        });
-    });
 }
