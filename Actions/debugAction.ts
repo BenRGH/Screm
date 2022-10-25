@@ -2,14 +2,13 @@ import { Message } from "discord.js";
 
 import {
     ContainsRule,
-    messageBuilder,
-    getGitCommit
+    messageBuilder
 } from "../utils";
 import Action from "./action";
 
 class DebugAction extends Action {
     constructor() {
-        super(["ping", "commit"]);
+        super(["ping"]);
     }
 
     match(message: string): boolean {
@@ -23,14 +22,6 @@ class DebugAction extends Action {
                 messageBuilder(
                     "pong",
                 )
-            );
-        } else if (ContainsRule(messageEvent.content, ["commit"])) {
-            const commit = await getGitCommit();
-            messageEvent.reply(
-                messageBuilder(JSON.stringify({
-                    author: commit.committer.name,
-                    message: commit.subject,
-                }))
             );
         }
     }
