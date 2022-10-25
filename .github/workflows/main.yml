@@ -32,6 +32,9 @@ jobs:
       - name: Install PM2 just in case
         run: npm install pm2 -g
 
+      - name: Install tsc
+        run: npm install tsc -g
+
       - name: Kill PM2 instance
         run: npm run pm2:kill
 
