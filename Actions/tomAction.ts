@@ -1,10 +1,10 @@
 import { Message } from "discord.js";
+import { firebaseCollection } from "../firebaseCollection";
 
-import { tomUrls } from "../Library/imgUrls";
+import { IImageAttachment } from "../types";
 import {
     ContainsRule,
     getRandomImageUrl,
-    IImageAttachment,
     messageBuilder
 } from "../utils";
 import Action from "./action";
@@ -18,13 +18,13 @@ class TomAction extends Action {
         return ContainsRule(message, this.rules);
     }
 
-    execute(messageEvent: Message): void {
+    async execute(messageEvent: Message): Promise<void> {
         messageEvent.channel.send(
             messageBuilder(
                 "meow?",
                 {
                     imageName: "tom.png",
-                    imageUrl: getRandomImageUrl(tomUrls),
+                    imageUrl: await getRandomImageUrl(firebaseCollection.tom),
                 } as IImageAttachment,
             )
         );

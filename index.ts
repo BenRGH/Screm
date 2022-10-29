@@ -3,6 +3,7 @@ import DiscordJs, {
     Message,
 } from "discord.js";
 import dotenv from "dotenv";
+const { initializeApp, cert } = require('firebase-admin/app');
 
 import actions from "./Actions/actions";
 import Action from "./Actions/action";
@@ -12,6 +13,12 @@ dotenv.config();
 
 const client = new DiscordJs.Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
+
+const serviceAccount = require('./serviceAccountKey.json');
+
+initializeApp({
+    credential: cert(serviceAccount)
 });
 
 client.on("ready", () => console.log("Oh I am ready!"));
