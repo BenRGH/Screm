@@ -7,7 +7,7 @@
         "start": "ts-node index.ts",
         "start:nodemon": "nodemon index.ts --inspect",
         "start:forever": "forever start --uid screm dist/index.js",
-        "stop:forever": "forever stop screm",
+        "stop:forever": "forever stopall",
         "build": "tsc --build tsconfig.json"
     },
     "keywords": [],
