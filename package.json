@@ -5,8 +5,10 @@
     "main": "index.js",
     "scripts": {
         "start": "ts-node index.ts",
-        "pm2": "tsc --project tsconfig.json && pm2 start dist/index.js --name screm",
-        "pm2:kill": "pm2 stop screm"
+        "start:nodemon": "nodemon index.ts --inspect",
+        "start:forever": "forever start --uid screm dist/index.js",
+        "stop:forever": "forever stop screm",
+        "build": "tsc --build tsconfig.json"
     },
     "keywords": [],
     "author": "",

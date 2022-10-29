@@ -18,6 +18,7 @@ client.on("ready", () => console.log("Oh I am ready!"));
 
 client.on("messageCreate", (messageEvent:Message) => {
     const message = messageEvent.content;
+    console.log(`message read: ${message}`)
 
     actions.forEach((action: Action) => {
         if (action.match(message)) {

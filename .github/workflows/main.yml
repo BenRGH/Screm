@@ -28,16 +28,19 @@ jobs:
           
       - name: Install Dependencies
         run: npm install
-        
-      - name: Install PM2 just in case
-        run: npm install pm2 -g
 
       - name: Install tsc
         run: npm install typescript -g
 
-      - name: Kill PM2 instance
-        run: npm run pm2:kill
+      - name: Install forever
+        run: npm install forever -g
 
-      - name: Start PM2 instance
-        if: always()
-        run: npm run pm2
+      - name: Build ts->js
+        run: npm run build
+
+      - name: Kill old process
+        run: npm run stop:forever
+
+      - name: Start forever process
+        # if: always() # runs regardless of previous fails
+        run: npm run start:forever
