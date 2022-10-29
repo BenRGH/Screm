@@ -8,7 +8,7 @@ import Action from "./action";
 
 class DebugAction extends Action {
     constructor() {
-        super(["ping"]);
+        super(["ping", "poo"]);
     }
 
     match(message: string): boolean {
@@ -20,7 +20,7 @@ class DebugAction extends Action {
         if (ContainsRule(messageEvent.content, ["ping"])) {
             messageEvent.reply(
                 messageBuilder(
-                    "pong",
+                    "pong 💩",
                 )
             );
         }
