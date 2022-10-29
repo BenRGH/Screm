@@ -8,7 +8,7 @@ import Action from "./action";
 
 class DebugAction extends Action {
     constructor() {
-        super(["ping", "poo"]);
+        super(["ping"]);
     }
 
     match(message: string): boolean {
@@ -16,14 +16,11 @@ class DebugAction extends Action {
     }
 
     async execute(messageEvent: Message): Promise<void> {
-        // TODO: bad, each action should be for one thing.
-        if (ContainsRule(messageEvent.content, ["ping"])) {
-            messageEvent.reply(
-                messageBuilder(
-                    "pong 💩",
-                )
-            );
-        }
+        messageEvent.reply(
+            messageBuilder(
+                "pong 🏓",
+            )
+        );
     }
 }
 

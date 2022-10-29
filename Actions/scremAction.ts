@@ -1,10 +1,11 @@
 import { Message } from "discord.js";
+import { firebaseCollection } from "../firebaseCollection";
+import { IImageAttachment } from "../types";
 
 import {
     ContainsRule,
     getRandomEmoticon,
     getRandomImageUrl,
-    IImageAttachment,
     messageBuilder
 } from "../utils";
 import Action from "./action";
@@ -18,13 +19,13 @@ class ScremAction extends Action {
         return ContainsRule(message, this.rules);
     }
 
-    execute(messageEvent: Message): void {
+    async execute(messageEvent: Message): Promise<void> {
         messageEvent.channel.send(
             messageBuilder(
                 getRandomEmoticon(),
                 {
                     imageName: "screm.png",
-                    imageUrl: getRandomImageUrl(),
+                    imageUrl: await getRandomImageUrl(firebaseCollection.screm),
                 } as IImageAttachment,
             )
         );

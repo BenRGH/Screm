@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ts-node index.ts",
+        "start": "npm run build && node dist/index.js",
         "start:nodemon": "nodemon index.ts --inspect",
         "start:forever": "forever start --uid screm dist/index.js",
         "stop:forever": "forever stopall",
@@ -15,7 +15,8 @@
     "license": "MIT",
     "dependencies": {
         "discord.js": "^13.7.0",
-        "dotenv": "^16.0.1"
+        "dotenv": "^16.0.1",
+        "firebase-admin": "^11.2.0"
     },
     "devDependencies": {
         "typescript": "*"
