@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { firebaseCollection } from "../firebaseCollection";
+import firebaseCollection from "../firebaseCollection";
 
 import { IImageAttachment } from "../types";
 import {

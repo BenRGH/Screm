@@ -1,5 +1,5 @@
 import { MessageAttachment } from "discord.js";
-import { firebaseCollection } from "./firebaseCollection";
+import firebaseCollection from "./firebaseCollection";
 const { getFirestore } = require('firebase-admin/firestore');
 
 import emoticons from "./Library/emoticons";
