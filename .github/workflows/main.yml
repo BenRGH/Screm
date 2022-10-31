@@ -26,6 +26,7 @@ jobs:
           node-version: 16
           cache: 'npm'
           
+      - name: DiscordJS Bot build
       - name: Install Dependencies
         run: npm install
 
@@ -35,12 +36,8 @@ jobs:
       - name: Build ts->js
         run: npm run build
 
+      - name: Frontend UI build
+        run: cd frontend && npm install && npm run build
+
       # we just leave running the app to the system processes, anything run here is isolated
       # and shit
-
-      # - name: Kill old process
-      #   run: npm run stop:forever
-
-      # - name: Start forever process
-      #   # if: always() # runs regardless of previous fails
-      #   run: npm run start:forever
