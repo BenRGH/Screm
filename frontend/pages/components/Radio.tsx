@@ -1,27 +1,31 @@
 import React from "react";
+import firebaseCollection from "../../../firebaseCollection";
 
 export interface IRadioItem {
     name: string;
-    value: string;
+    value: firebaseCollection;
 }
 
 interface IRadioProps {
     items: IRadioItem[];
+    // onChange: (value: firebaseCollection) => void;
 }
 
 export default function Radio(props: IRadioProps) {
     return (
         <>
             {props.items.map((item, index) => (
-                <>
-                    <label htmlFor="upload-type">{item.name}</label>
+                <div key={`radio-${index}`}>
+                    <label htmlFor="collection">{item.name}</label>
                     <input
                         type="radio"
-                        id={`upload-type-${index}`}
-                        name="upload-type"
+                        id={`collection-${index}`}
+                        name="collection"
                         value={item.value}
+                        defaultChecked={index === 0}
+                        // onClick={() => props.onChange(item.value)}
                     />
-                </>
+                </div>
             ))}
         </>
     );

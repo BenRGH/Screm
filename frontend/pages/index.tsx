@@ -1,6 +1,8 @@
 import Head from "next/head";
+import React from "react";
 import styled from "styled-components";
-import Radio from "./components/Radio";
+
+import UploadForm from "./components/UploadForm";
 
 const Container = styled.div`
     padding: 0 2rem;
@@ -16,15 +18,6 @@ const Main = styled.div`
     align-items: center;
 `;
 
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-
-    input {
-        margin-bottom: 1rem;
-    }
-`;
-
 export default function Home() {
     return (
         <Container>
@@ -36,18 +29,7 @@ export default function Home() {
 
             <Main>
                 <h1>Screm Bot Upload</h1>
-                <Form>
-                    <Radio
-                        items={[
-                            { name: "Tom", value: "tom" },
-                            { name: "Screm", value: "screm" },
-                        ]}
-                    />
-
-                    <label htmlFor="upload">Choose a file:</label>
-                    <input type="file" id="upload" name="filename" />
-                    <input type="submit" value="Submit" />
-                </Form>
+                <UploadForm />
             </Main>
         </Container>
     );
