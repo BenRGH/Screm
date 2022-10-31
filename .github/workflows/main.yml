@@ -26,7 +26,6 @@ jobs:
           node-version: 16
           cache: 'npm'
           
-      - name: DiscordJS Bot build
       - name: Install Dependencies
         run: npm install
 
