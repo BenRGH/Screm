@@ -3,8 +3,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import formidable from "formidable";
 import { initializeApp } from "firebase/app";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import fs from 'fs';
+import Jimp from 'jimp';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9ZJ19xZ7NITN85x2IYtVlYvPMbYRMwbs",
@@ -55,6 +56,24 @@ const uploadFiles = async (file: IFile) => {
     // Get file from formidable file
     // @ts-ignore
     const rawData = fs.readFileSync(f.filepath);
+    let convertedData;
+
+    // Convert to png if not already, using jimp
+    // @ts-ignore
+    if (f.mimetype !== 'image/png') {
+      convertedData = await Jimp.read(rawData).then(async (image) => {
+        return await image.getBufferAsync(Jimp.MIME_PNG).then((buffer) => {
+          return buffer;
+        }).catch((e) => {
+          console.log("Error converting document: ", e);
+        });
+      })
+        .catch(e => {
+          console.error("Error converting document: ", e);
+        });
+    } else {
+      convertedData = rawData;
+    }
 
     // Upload to Firebase Storage
     // @ts-ignore
@@ -64,7 +83,11 @@ const uploadFiles = async (file: IFile) => {
       contentType: f.mimetype,
     };
 
-    await uploadBytesResumable(storageRef, rawData, metadata).then((snapshot) => {
+    if (!convertedData) {
+      return;
+    }
+
+    await uploadBytesResumable(storageRef, convertedData, metadata).then((snapshot) => {
       getDownloadURL(snapshot.ref).then(async (downloadURL) => {
         console.log('Uploaded a blob or file!');
         console.log(downloadURL);
