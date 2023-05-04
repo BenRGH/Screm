@@ -1,6 +1,7 @@
 enum firebaseCollection {
-  tom = "tom",
-  screm = "screm",
+    tom = "tom",
+    screm = "screm",
+    luna = "luna",
 }
 
 export default firebaseCollection;
