@@ -13,13 +13,10 @@ env:
   TOKEN: ${{ secrets.TOKEN }}
   FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  build-bot:
     runs-on: self-hosted
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -40,10 +37,27 @@ jobs:
         env:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
         run: |
-          echo "$FIREBASE_CREDENTIALS" > serviceAccountKey.json
+          echo "$FIREBASE_CREDENTIALS" > ./dist/serviceAccountKey.json
 
-      - name: Frontend UI build
-        run: cd frontend && npm install && npm run build
+  build-frontend:
+    runs-on: self-hosted
 
-      # we just leave running the app to the system processes, anything run here is isolated
-      # and shit
+    steps: 
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      
+      - name: Change directory
+        run: cd frontend
+      
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+
+  # we just leave running the apps to the system processes, anything run here is isolated
+  # and shit
